@@ -90,8 +90,15 @@ def calculate_surplus_data(sales_row):
     # pprint(stock)
     stock_row = stock[-1]
     # print(stock_row)
-    print(f"Stock_row: {stock_row}")
-    print(f"sales_row: {sales_row}")
+    # print(f"Stock_row: {stock_row}")
+    # print(f"sales_row: {sales_row}")
+    surples_data = []
+    for stock, sales in zip(stock_row, sales_row):
+        surples = int(stock) - sales
+        surples_data.append(surples)
+    # print(surples_data)
+    
+    return surples_data
 
 def main():
 
@@ -99,7 +106,8 @@ def main():
     # print(data) to confirm if is working
     sales_data = [int(num) for num in data]
     update_sales_worksheet(data)
-    calculate_surplus_data(sales_data)
+    new_surples_data = calculate_surplus_data(sales_data)
+    print(new_surples_data)
 
 print("Welcome to Love Sandwiches Data Automation.\n")
 main()
