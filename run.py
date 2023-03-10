@@ -106,7 +106,6 @@ def calculate_surplus_data(sales_row):
     """
     Compare sakes with stock abd canculate the surples fir each item type.
 
-
     The surples is define as the sales figure subtracted from the stock.
     - Posititve surplus indicates waste
     - Negative surplus indicates extra made when stock was sold out.
@@ -126,6 +125,27 @@ def calculate_surplus_data(sales_row):
     
     return surples_data
 
+def get_last_5_entries_Sales():
+    """
+    Collects collumns of data from sales worksheet, collecting
+    the last 5 entries for each sandwich and returns the data 
+    as a list of list.
+    """
+
+    sales = SHEET.worksheet("sales")
+    # column = sales.col_values(3)
+    # print(column)
+
+    collumns = []
+    for ind in range(1, 7):
+        #print(ind)
+        collumn = sales.col_values(ind)
+        collumns.append(collumn[-5:]) # slice [-5] to get only the last 5 entry of the list.
+    # pprint(collumns)
+
+    return collumns
+
+
 
 
 def main():
@@ -138,4 +158,7 @@ def main():
     update_worksheet(new_surplus_data, "surplus")
 
 print("Welcome to Love Sandwiches Data Automation.\n")
-main()
+# main()
+
+
+sales_collumns = get_last_5_entries_Sales()
